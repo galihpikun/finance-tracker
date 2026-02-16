@@ -24,6 +24,7 @@ import fetchBalanceTotal, {
 import ChartAreaIcons from "@/components/custom-components/dashboard/ChartAreaIcons";
 import { ChartRadarDefault } from "@/components/custom-components/dashboard/Radar";
 import LastTransactions from "@/components/custom-components/dashboard/LastTrans";
+import { AddTransactions } from "@/components/custom-components/forms/AddTransaction";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -42,8 +43,9 @@ export default async function Page() {
       }}>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 px-4 shadow-md" >
-          <SidebarTrigger className="-ml-1" />
+        <header className="flex h-16 shrink-0 items-center gap-2 px-4 shadow-md justify-between" >
+          <div className="flex items-center">
+            <SidebarTrigger className="-ml-1" />
           <Separator
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"
@@ -59,6 +61,8 @@ export default async function Page() {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
+          </div>
+          <AddTransactions></AddTransactions>
         </header>
         <div className="flex flex-col px-10 p-4">
           <h1 className="text-3xl font-semibold">Dashboard</h1>
