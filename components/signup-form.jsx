@@ -68,9 +68,7 @@ export function SignupForm({
             <FieldGroup>
               <Field>
                 <Button type="submit" formAction={handleAction} className="bg-emerald-500 hover:bg-emerald-700">Create Account</Button>
-                <Button variant="outline" type="button">
-                  Sign up with Google
-                </Button>
+                
                 <FieldDescription className="px-6 text-center">
                   Already have an account? <Link href="/login">Sign in</Link>
                 </FieldDescription>

@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input"
 import { signIn } from "next-auth/react"
 import { redirect } from "next/navigation"
 import Link from "next/link"
+import { toast } from "sonner"
 
 export function LoginForm({
   className,
@@ -33,11 +34,11 @@ export function LoginForm({
     });
 
     if (!response.ok) {
-      alert("gagal login");
+      toast.error("Login failed. Please check your inputs.", {position:"top-center"});
       return null;
     }
 
-    alert("Success!");
+    toast.success("Login successful!" , {position:"top-center"});
 
     redirect("/dashboard");
   }
@@ -70,10 +71,8 @@ export function LoginForm({
                 <Input id="password" type="password" name="password" required />
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
-                <Button variant="outline" type="button">
-                  Login with Google
-                </Button>
+                <Button type="submit" className="bg-emerald-500 hover:bg-emerald-700">Login</Button>
+              
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <Link href="/signup">Sign up</Link>
                 </FieldDescription>
