@@ -1,0 +1,73 @@
+"use client"
+
+import { TrendingUp } from "lucide-react"
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartConfig,
+} from "@/components/ui/chart"
+
+
+export const description = "A radar chart"
+
+const chartData = [
+  { month: "January", desktop: 186 },
+  { month: "February", desktop: 305 },
+  { month: "March", desktop: 237 },
+  { month: "April", desktop: 273 },
+  { month: "May", desktop: 209 },
+  { month: "June", desktop: 214 },
+]
+
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "var(--chart-1)",
+  },
+}
+
+export function ChartRadarDefault({data}) {
+
+
+  return (
+    <Card className="w-1/3">
+      <CardHeader className="items-center pb-4">
+        <CardTitle>Radar Chart</CardTitle>
+        <CardDescription>
+          Showing top expenses throughout your spendings
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-62.5"
+        >
+          <RadarChart data={data}>
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <PolarAngleAxis dataKey="categories" />
+            <PolarGrid />
+            <Radar
+              dataKey="total"
+              fill="var(--color-desktop)"
+              fillOpacity={0.6}
+            />
+          </RadarChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+
+      </CardFooter>
+    </Card>
+  )
+}

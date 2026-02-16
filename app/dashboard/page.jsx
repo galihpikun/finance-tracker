@@ -19,14 +19,18 @@ import { ArrowUp, Wallet, Landmark } from "lucide-react";
 import fetchBalanceTotal, {
   fetchBalanceBank,
   fetchBalanceCash,
+  topSpender,
 } from "@/lib/transaction";
 import ChartAreaIcons from "@/components/custom-components/dashboard/ChartAreaIcons";
+import { ChartRadarDefault } from "@/components/custom-components/dashboard/Radar";
+import LastTransactions from "@/components/custom-components/dashboard/LastTrans";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
   console.log(session);
   const user = session?.user;
 
+  const data = await topSpender();
   const balance = await fetchBalanceTotal();
   const balanceCash = await fetchBalanceCash();
   const balanceBank = await fetchBalanceBank();
@@ -38,7 +42,7 @@ export default async function Page() {
       }}>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 px-4">
+        <header className="flex h-16 shrink-0 items-center gap-2 px-4 shadow-md" >
           <SidebarTrigger className="-ml-1" />
           <Separator
             orientation="vertical"
@@ -47,22 +51,22 @@ export default async function Page() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">Build Your Application</BreadcrumbLink>
+                <BreadcrumbLink>Control Your Finance</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                <BreadcrumbPage>Dashboard</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        <div className="flex flex-col px-10 p-4 pt-0">
+        <div className="flex flex-col px-10 p-4">
           <h1 className="text-3xl font-semibold">Dashboard</h1>
           <p className="mt-1">
             Welcome Back {user.name}! Here's your financial overview.
           </p>
 
-          <div className="flex flex-col gap-5 mt-5">
+          <div className="flex flex-col gap-7 mt-5">
             <div className="grid auto-rows-min gap-4 md:grid-cols-3">
               <div className="w-full bg-linear-65 from-emerald-400 to-emerald-600 rounded-4xl p-5 flex flex-col gap-2 py-7 text-white shadow-md hover:shadow-xl transition-all duration-300">
                 <p>Total Balance</p>
@@ -96,8 +100,13 @@ export default async function Page() {
               </div>
             </div>
 
-            <div className="w-full">
+            <div className="w-full flex flex-row gap-7">
                 <ChartAreaIcons></ChartAreaIcons>
+                <ChartRadarDefault data={data}></ChartRadarDefault>
+            </div>
+
+            <div>
+              <LastTransactions></LastTransactions>
             </div>
           </div>
         </div>
