@@ -25,11 +25,11 @@ const data = {
     },
     {
       title:"Transactions",
-    url: "transactions"
+    url: "/transactions"
     },
     {
       title:"Goals",
-    url: "goals"
+    url: "/goals"
     },
   ],
 }
@@ -71,7 +71,7 @@ export function AppSidebar({
                   </a>
                 </SidebarMenuButton>
                 {item.items?.length ? (
-                  <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
+                  <SidebarMenuSub className="ml-0 border-l-0 px-1.5" >
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
                         <SidebarMenuSubButton asChild isActive={item.isActive}>

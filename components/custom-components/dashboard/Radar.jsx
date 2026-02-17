@@ -1,7 +1,7 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts"
+import { Pie, PieChart } from "recharts"
 
 import {
   Card,
@@ -15,58 +15,73 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  ChartConfig,
 } from "@/components/ui/chart"
+import { Cell } from "recharts"
 
+export const description = "A simple pie chart"
 
-export const description = "A radar chart"
-
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 273 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-]
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  visitors: {
+    label: "Visitors",
+  },
+  chrome: {
+    label: "Chrome",
     color: "var(--chart-1)",
+  },
+  safari: {
+    label: "Safari",
+    color: "var(--chart-2)",
+  },
+  firefox: {
+    label: "Firefox",
+    color: "var(--chart-3)",
+  },
+  edge: {
+    label: "Edge",
+    color: "var(--chart-4)",
+  },
+  other: {
+    label: "Other",
+    color: "var(--chart-5)",
   },
 }
 
 export function ChartRadarDefault({data}) {
-
+  const COLORS = ["#4f46e5", "#06b6d4", "#f59e0b", "#10b981", "#ef4444", "#8b5cf6"]
+  const fixedData = data.map(item => ({
+  ...item,
+  total: Number(item.total)
+}))
 
   return (
-    <Card className="w-1/3">
-      <CardHeader className="items-center pb-4">
-        <CardTitle>Radar Chart</CardTitle>
-        <CardDescription>
-          Showing top expenses throughout your spendings
-        </CardDescription>
+    <Card className="flex flex-col w-1/3">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Pie Chart</CardTitle>
+        <CardDescription>A Pie Chart of Your Top 6 Spenders</CardDescription>
       </CardHeader>
-      <CardContent className="pb-0">
+      <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-62.5"
+          className="mx-auto aspect-square max-h-70"
         >
-          <RadarChart data={data}>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <PolarAngleAxis dataKey="categories" />
-            <PolarGrid />
-            <Radar
-              dataKey="total"
-              fill="var(--color-desktop)"
-              fillOpacity={0.6}
+          <PieChart>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
             />
-          </RadarChart>
+            <Pie data={fixedData} dataKey="total" nameKey="categories" >
+               {fixedData.map((_, i) => (
+                <Cell key={i} fill={COLORS[i % COLORS.length]} />
+              ))}
+            </Pie>
+          </PieChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
-
+        <div className="text-muted-foreground leading-none">
+          Showing the top total spenders all time
+        </div>
       </CardFooter>
     </Card>
   )
