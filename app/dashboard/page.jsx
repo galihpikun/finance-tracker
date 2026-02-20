@@ -65,9 +65,9 @@ export default async function Page() {
           <AddTransactions></AddTransactions>
         </header>
         <div className="flex flex-col px-10 p-4">
-          <h1 className="text-3xl font-semibold">Dashboard</h1>
+          <h1 className="text-3xl font-bold">Dashboard</h1>
           <p className="mt-1">
-            Welcome Back {user.name}! Here's your financial overview.
+            Welcome Back <span className="font-medium text-emerald-500">{user.name}</span>! Here's your financial overview.
           </p>
 
           <div className="flex flex-col gap-7 mt-5">

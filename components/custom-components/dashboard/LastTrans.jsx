@@ -12,6 +12,7 @@ import { last10Trans } from "@/lib/transaction"
 export default async function LastTransactions() {
 
     const datas = await last10Trans();
+    
     return(
         <div>
             <h1 className="text-2xl font-medium mb-5">Last 10 Transactions</h1>

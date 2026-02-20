@@ -111,7 +111,7 @@ setDatas(datas);
         <div className="flex flex-col px-10 p-4">
           <div className="flex flex-row w-full justify-between items-center">
             <div>
-              <h1 className="text-3xl font-semibold">Transactions</h1>
+              <h1 className="text-3xl font-bold">Transactions</h1>
               <p className="mt-1">View and manage all your transactions</p>
             </div>
             <Popover>
@@ -190,6 +190,7 @@ setDatas(datas);
                     </SelectItem>
                     <SelectItem value="Investments">Investments</SelectItem>
                     <SelectItem value="Income/Salary">Income/Salary</SelectItem>
+                    <SelectItem value="Goals">Goals</SelectItem>
                     <SelectItem value="Others">Others</SelectItem>
                   </SelectGroup>
                 </SelectContent>
@@ -203,9 +204,9 @@ setDatas(datas);
           </div>
 
           <div className="mt-5 h-130 overflow-y-auto">
-            <h1 className="text-2xl font-medium mb-5">Last 10 Transactions</h1>
+            <h1 className="text-2xl font-medium mb-5">Last Transactions</h1>
             <Table>
-  <TableCaption>A list of your 10 recent <span className="font-semibold">Transactions</span>.</TableCaption>
+  <TableCaption>A list of your recent <span className="font-semibold">Transactions</span>.</TableCaption>
   <TableHeader>
     <TableRow className="text-center">
       <TableHead>Transactions</TableHead>
