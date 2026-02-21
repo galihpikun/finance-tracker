@@ -28,8 +28,10 @@ import { AddTransactions } from "@/components/custom-components/forms/AddTransac
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
-  console.log(session);
+ 
   const user = session?.user;
+  const passing = user;
+
 
   const data = await topSpender();
   const balance = await fetchBalanceTotal();
@@ -41,7 +43,7 @@ export default async function Page() {
       style={{
         "--sidebar-width": "19rem",
       }}>
-      <AppSidebar />
+      <AppSidebar/>
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 px-4 shadow-md justify-between" >
           <div className="flex items-center">

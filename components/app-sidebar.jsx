@@ -6,6 +6,7 @@ import * as React from "react"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
@@ -15,6 +16,8 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import DropDown from "./dropdown"
+
 
 // This is sample data.
 const data = {
@@ -38,6 +41,8 @@ export function AppSidebar({
   ...props
 }) {
   const pathname = usePathname()
+
+
 
   return (
     <Sidebar variant="floating" {...props} className="bg-emerald-500 p-5">
@@ -86,6 +91,9 @@ export function AppSidebar({
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <DropDown></DropDown>
+      </SidebarFooter>
     </Sidebar>
   );
 }
