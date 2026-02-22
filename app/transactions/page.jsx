@@ -107,6 +107,11 @@ setDatas(datas);
               </BreadcrumbList>
             </Breadcrumb>
           </div>
+          <Field orientation="horizontal" className="w-1/2">
+      <Input type="search" placeholder="Search..." onChange={(e) => {
+                    setSearch(e.target.value)
+                }} />
+    </Field>
         </header>
         <div className="flex flex-col px-10 p-4">
           <div className="flex flex-row w-full justify-between items-center">
@@ -196,11 +201,7 @@ setDatas(datas);
                 </SelectContent>
               </Select>
             </Field>
-               <Field orientation="horizontal" className="w-1/2">
-      <Input type="search" placeholder="Search..." onChange={(e) => {
-                    setSearch(e.target.value)
-                }} />
-    </Field>
+               
           </div>
 
           <div className="mt-5 h-130 overflow-y-auto">

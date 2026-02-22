@@ -25,7 +25,7 @@ export default function DropDown() {
         <p>Account Info</p> <EllipsisVertical></EllipsisVertical>
     </Button>
   </DropdownMenuTrigger>
-  <DropdownMenuContent side="right" align="end">
+  <DropdownMenuContent align="end">
     <DropdownMenuGroup>
       <DropdownMenuItem><Link href="/profile" className="flex items-center gap-2 justify-center w-full font-medium"><UserCircle className="text-black"/> Profile</Link></DropdownMenuItem>
     </DropdownMenuGroup>

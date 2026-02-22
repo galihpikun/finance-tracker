@@ -2,10 +2,8 @@ import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -15,8 +13,11 @@ import {
 } from "@/components/ui/sidebar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import { ArrowUp, Wallet, Landmark, Pencil } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+import { EditProfile } from "@/components/custom-components/forms/EditProfile";
+import { DeleteAcc } from "@/components/custom-components/forms/DeleteAcc";
+import { EditPassword } from "@/components/custom-components/forms/EditPassword";
 
 export default async function profile () {
     const session = await getServerSession(authOptions);
@@ -54,9 +55,9 @@ export default async function profile () {
     <p className="text-sm text-gray-500">Manage your account information and preferences</p>
   </div>
 
-  <div className="flex gap-6">
+  <div className="flex gap-6 flex-wrap">
 
-    <div className="bg-white rounded-xl p-6 flex flex-col items-center gap-3 w-1/3 shrink-0 shadow-sm border border-gray-100">
+    <div className="bg-white rounded-xl p-6 flex flex-col items-center gap-3 w-1/2 shrink-0 shadow-sm border border-gray-100">
         <img
           src="https://randomuser.me/api/portraits/men/32.jpg"
           alt="Profile"
@@ -67,18 +68,13 @@ export default async function profile () {
         <p className="text-sm text-gray-500">{user.email}</p>
       </div>
       <p className="text-xs text-gray-400">Member since January 2024</p>
-      <button className="mt-1 w-full py-2 px-4 border border-teal-600 text-teal-600 rounded-lg text-sm font-medium hover:bg-teal-50 transition-colors">
-        Change Password
-      </button>
+      <EditPassword></EditPassword>
     </div>
 
     <div className="bg-white rounded-xl p-6 flex-1 shadow-sm border border-gray-100">
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-lg font-semibold text-gray-800">Personal Information</h2>
-        <Button variant="ghost" className="flex items-center gap-1 text-sm text-teal-600 hover:text-teal-700">
-          <Pencil className="w-4 h-4" />
-          Edit
-        </Button>
+        <EditProfile passing={user}></EditProfile>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -116,7 +112,7 @@ export default async function profile () {
   <div className="w-full border-4 border-red-300 bg-red-50 border-dashed flex flex-col items-start justify-center gap-3 rounded-2xl p-5 mt-10">
     <h1 className="text-2xl text-red-600 font-semibold">Danger Zone</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum minus alias maiores!</p>
-    <Button variant="destructive">Delete Account</Button>
+    <DeleteAcc data={user.id}></DeleteAcc>
   </div>
 
 

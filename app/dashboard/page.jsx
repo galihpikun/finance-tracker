@@ -106,7 +106,7 @@ export default async function Page() {
               </div>
             </div>
 
-            <div className="w-full flex flex-row gap-7">
+            <div className="w-full flex flex-row flex-wrap gap-7">
                 <ChartAreaIcons></ChartAreaIcons>
                 <ChartRadarDefault data={data}></ChartRadarDefault>
             </div>

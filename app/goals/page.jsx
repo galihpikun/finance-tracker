@@ -97,7 +97,9 @@ export default async function Page() {
 
                 return (
                 <Card className="p-3 flex flex-col gap-3 bg-linear-to-br" key={goal.id}>
-                <h3 className="text-lg font-medium">{goal.name}</h3>
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-medium">{goal.name}</h3>
+                </div>
                 <div className="w-full bg-gray-200 rounded-full h-3">
                   <div
                     className="bg-emerald-500 h-3 rounded-full transition-all duration-500"
@@ -106,7 +108,7 @@ export default async function Page() {
                 </div>
                 <div className="flex justify-between">
                     <p className="font-medium">Rp. <span className="font-semibold text-emerald-600">{Number(goal.saved_amount).toLocaleString("id-ID")}</span>/{Number(goal.target_amount).toLocaleString("id-ID")}</p>
-                    <p className="font-medium text-emerald-500">{percentage}%</p>
+                    <p className="font-medium text-emerald-500">{percentage.toFixed(0)}%</p>
                 </div>
                 <PayGoal data={goal}></PayGoal>
               
